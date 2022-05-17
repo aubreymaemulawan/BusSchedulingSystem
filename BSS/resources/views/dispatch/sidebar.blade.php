@@ -45,36 +45,6 @@
         </div>
     </li>
 
-    <!-- Nav Item - Dispatcher Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDispatcher"
-            aria-expanded="true" aria-controls="collapseDispatcher">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Manage Dispatcher</span>
-        </a>
-        <div id="collapseDispatcher" class="collapse" aria-labelledby="headingDispatcher" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Menu:</h6>
-                <a class="collapse-item" href="./dispatcher">Dispatcher List</a>
-                <a class="collapse-item" href="./account">Accounts</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Operator -->
-    <li class="nav-item">
-        <a class="nav-link" href="./operator">
-            <i class="fas fa-fw fa-id-card"></i>
-            <span>Manage Operator</span></a>
-    </li>
-
-    <!-- Nav Item - Fare -->
-    <li class="nav-item">
-        <a class="nav-link" href="./fare">
-            <i class="fas fa-fw fa-ticket"></i>
-            <span>Manage Fare</span></a>
-    </li>
-
     <!-- Nav Item - Schedule Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSchedule"
@@ -86,36 +56,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="./schedule">Schedule List</a>
-                <a class="collapse-item" href="#">Transactions</a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Trips -->
-    <li class="nav-item">
-        <a class="nav-link" href="./operator">
-            <i class="fas fa-fw fa- fa-map"></i>
-            <span>Record of Trips</span></a>
-    </li>
-
-    <!-- Nav Item - Reports Collapse Menu -->
-    <li id=main-bus class="nav-item" >
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBus"
-            aria-expanded="true" aria-controls="collapseBus">
-            <i class="fas fa-fw fa-file"></i>
-            <span>Generate Reports</span>
-        </a>
-        <div id="collapseBus" class="collapse" aria-labelledby="headingBus" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Menu:</h6>
-                <a id=menu-bus class="collapse-item" href="./bus">Bus</a>
-                <a class="collapse-item" href="./company">Bus Companies</a>
-                <a class="collapse-item" href="./company">Dispatchers</a>
-                <a class="collapse-item" href="./location">Operators</a>
-                <a class="collapse-item" href="./route">Schedules</a>
-                <a class="collapse-item" href="./route">Fare</a>
-                <a class="collapse-item" href="./route">Transactions</a>
-                <div class="collapse-divider"></div>
             </div>
         </div>
     </li>
