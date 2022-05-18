@@ -13,9 +13,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="./admin">
+        <a class="nav-link" href="./dispatch">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dispatcher Dashboard</span></a>
     </li>
 
     <!-- Divider -->
@@ -37,9 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a id=menu-bus class="collapse-item" href="./bus">Manage Bus</a>
-                <a class="collapse-item" href="./company">Companies</a>
                 <a class="collapse-item" href="./location">Locations</a>
-                <a class="collapse-item" href="./route">Routes</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>
@@ -56,6 +54,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="./schedule">Schedule List</a>
+                <a class="collapse-item" href="#">Transactions</a>
             </div>
         </div>
     </li>
