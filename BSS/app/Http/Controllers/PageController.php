@@ -23,6 +23,10 @@ use PDF;
 
 class PageController extends Controller
 {
+    public function passenger(){
+        return view('busroute');
+    }
+
     public function dashboard(){
         return view('dashboard');
     }

@@ -39,127 +39,168 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Bus
-Route::match(['get','post',], 'bus/list', [BusController::class,'list']);
-Route::match(['get','post',], 'bus/items', [BusController::class,'items']);
-Route::match(['get','post',], 'bus/create', [BusController::class,'create']);
-Route::match(['get','post',], 'bus/update', [BusController::class,'update']);
-Route::match(['get','post',], 'bus/delete', [BusController::class,'delete']);
+Route::controller(BusController::class)->group(function () {
+    Route::match(['get','post',], 'bus/list', 'list');
+    Route::match(['get','post',], 'bus/items', 'items');
+    Route::match(['get','post',], 'bus/create', 'create');
+    Route::match(['get','post',], 'bus/update', 'update');
+    Route::match(['get','post',], 'bus/delete', 'delete');
+});
 
 //Bustype
-Route::match(['get','post',], 'bustype/list', [BustypeController::class,'list']);
-Route::match(['get','post',], 'bustype/items', [BustypeController::class,'items']);
-Route::match(['get','post',], 'bustype/create', [BustypeController::class,'create']);
-Route::match(['get','post',], 'bustype/update', [BustypeController::class,'update']);
-Route::match(['get','post',], 'bustype/delete', [BustypeController::class,'delete']);
+Route::controller(BustypeController::class)->group(function () {
+    Route::match(['get','post',], 'bustype/list', 'list');
+    Route::match(['get','post',], 'bustype/items', 'items');
+    Route::match(['get','post',], 'bustype/create', 'create');
+    Route::match(['get','post',], 'bustype/update', 'update');
+    Route::match(['get','post',], 'bustype/delete', 'delete');
+});
 
 //Busstatus
-Route::match(['get','post',], 'busstatus/list', [BusstatusController::class,'list']);
-Route::match(['get','post',], 'busstatus/items', [BusstatusController::class,'items']);
-Route::match(['get','post',], 'busstatus/create', [BusstatusController::class,'create']);
-Route::match(['get','post',], 'busstatus/update', [BusstatusController::class,'update']);
-Route::match(['get','post',], 'busstatus/delete', [BusstatusController::class,'delete']);
+Route::controller(BusstatusController::class)->group(function () {
+    Route::match(['get','post',], 'busstatus/list', 'list');
+    Route::match(['get','post',], 'busstatus/items', 'items');
+    Route::match(['get','post',], 'busstatus/create', 'create');
+    Route::match(['get','post',], 'busstatus/update', 'update');
+    Route::match(['get','post',], 'busstatus/delete', 'delete');
+});
 
 //Company
-Route::match(['get','post',], 'company/list', [CompanyController::class,'list']);
-Route::match(['get','post',], 'company/items', [CompanyController::class,'items']);
-Route::match(['get','post',], 'company/create', [CompanyController::class,'create']);
-Route::match(['get','post',], 'company/update', [CompanyController::class,'update']);
-Route::match(['get','post',], 'company/delete', [CompanyController::class,'delete']);
+Route::controller(CompanyController::class)->group(function () {
+    Route::match(['get','post',], 'company/list', 'list');
+    Route::match(['get','post',], 'company/items', 'items');
+    Route::match(['get','post',], 'company/create', 'create');
+    Route::match(['get','post',], 'company/update', 'update');
+    Route::match(['get','post',], 'company/delete', 'delete');
+});
 
 //Daccount
-Route::match(['get','post',], 'daccount/list', [DaccountController::class,'list']);
-Route::match(['get','post',], 'daccount/items', [DaccountController::class,'items']);
-Route::match(['get','post',], 'daccount/create', [DaccountController::class,'create']);
-Route::match(['get','post',], 'daccount/update', [DaccountController::class,'update']);
-Route::match(['get','post',], 'daccount/delete', [DaccountController::class,'delete']);
+Route::controller(DaccountController::class)->group(function () {
+    Route::match(['get','post',], 'daccount/list', 'list');
+    Route::match(['get','post',], 'daccount/items', 'items');
+    Route::match(['get','post',], 'daccount/create', 'create');
+    Route::match(['get','post',], 'daccount/update', 'update');
+    Route::match(['get','post',], 'daccount/delete', 'delete');
+});
 
 //Discount
-Route::match(['get','post',], 'discount/list', [DiscountController::class,'list']);
-Route::match(['get','post',], 'discount/items', [DiscountController::class,'items']);
-Route::match(['get','post',], 'discount/create', [DiscountController::class,'create']);
-Route::match(['get','post',], 'discount/update', [DiscountController::class,'update']);
-Route::match(['get','post',], 'discount/delete', [DiscountController::class,'delete']);
+Route::controller(DiscountController::class)->group(function () {
+    Route::match(['get','post',], 'discount/list', 'list');
+    Route::match(['get','post',], 'discount/items', 'items');
+    Route::match(['get','post',], 'discount/create', 'create');
+    Route::match(['get','post',], 'discount/update', 'update');
+    Route::match(['get','post',], 'discount/delete', 'delete');
+});
 
 //Dispatcher
-Route::match(['get','post',], 'dispatcher/list', [DispatcherController::class,'list']);
-Route::match(['get','post',], 'dispatcher/items', [DispatcherController::class,'items']);
-Route::match(['get','post',], 'dispatcher/create', [DispatcherController::class,'create']);
-Route::match(['get','post',], 'dispatcher/update', [DispatcherController::class,'update']);
-Route::match(['get','post',], 'dispatcher/delete', [DispatcherController::class,'delete']);
-
+Route::controller(DispatcherController::class)->group(function () {
+    Route::match(['get','post',], 'dispatcher/list', 'list');
+    Route::match(['get','post',], 'dispatcher/items', 'items');
+    Route::match(['get','post',], 'dispatcher/create', 'create');
+    Route::match(['get','post',], 'dispatcher/update', 'update');
+    Route::match(['get','post',], 'dispatcher/delete', 'delete');
+});
 
 //Fare
-Route::match(['get','post',], 'fare/list', [FareController::class,'list']);
-Route::match(['get','post',], 'fare/items', [FareController::class,'items']);
-Route::match(['get','post',], 'fare/create', [FareController::class,'create']);
-Route::match(['get','post',], 'fare/update', [FareController::class,'update']);
-Route::match(['get','post',], 'fare/delete', [FareController::class,'delete']);
+Route::controller(FareController::class)->group(function () {
+    Route::match(['get','post',], 'fare/list', 'list');
+    Route::match(['get','post',], 'fare/items', 'items');
+    Route::match(['get','post',], 'fare/create', 'create');
+    Route::match(['get','post',], 'fare/update', 'update');
+    Route::match(['get','post',], 'fare/delete', 'delete');
+});
 
 //Location
-Route::match(['get','post',], 'location/list', [LocationController::class,'list']);
-Route::match(['get','post',], 'location/items', [LocationController::class,'items']);
-Route::match(['get','post',], 'location/create', [LocationController::class,'create']);
-Route::match(['get','post',], 'location/update', [LocationController::class,'update']);
-Route::match(['get','post',], 'location/delete', [LocationController::class,'delete']);
+Route::controller(LocationController::class)->group(function () {
+    Route::match(['get','post',], 'location/list', 'list');
+    Route::match(['get','post',], 'location/items', 'items');
+    Route::match(['get','post',], 'location/create', 'create');
+    Route::match(['get','post',], 'location/update', 'update');
+    Route::match(['get','post',], 'location/delete', 'delete');
+});
 
 //Operator
-Route::match(['get','post',], 'operator/list', [OperatorController::class,'list']);
-Route::match(['get','post',], 'operator/items', [OperatorController::class,'items']);
-Route::match(['get','post',], 'operator/create', [OperatorController::class,'create']);
-Route::match(['get','post',], 'operator/update', [OperatorController::class,'update']);
-Route::match(['get','post',], 'operator/delete', [OperatorController::class,'delete']);
+Route::controller(OperatorController::class)->group(function () {
+    Route::match(['get','post',], 'operator/list', 'list');
+    Route::match(['get','post',], 'operator/items', 'items');
+    Route::match(['get','post',], 'operator/create', 'create');
+    Route::match(['get','post',], 'operator/update', 'update');
+    Route::match(['get','post',], 'operator/delete', 'delete');
+});
 
 //Route
-Route::match(['get','post',], 'route/list', [RouteController::class,'list']);
-Route::match(['get','post',], 'route/items', [RouteController::class,'items']);
-Route::match(['get','post',], 'route/create', [RouteController::class,'create']);
-Route::match(['get','post',], 'route/update', [RouteController::class,'update']);
-Route::match(['get','post',], 'route/delete', [RouteController::class,'delete']);
+Route::controller(RouteController::class)->group(function () {
+    Route::match(['get','post',], 'route/list', 'list');
+    Route::match(['get','post',], 'route/items', 'items');
+    Route::match(['get','post',], 'route/create', 'create');
+    Route::match(['get','post',], 'route/update', 'update');
+    Route::match(['get','post',], 'route/delete', 'delete');
+});
 
 //Schedule
-Route::match(['get','post',], 'schedule/list', [ScheduleController::class,'list']);
-Route::match(['get','post',], 'schedule/items', [ScheduleController::class,'items']);
-Route::match(['get','post',], 'schedule/create', [ScheduleController::class,'create']);
-Route::match(['get','post',], 'schedule/update', [ScheduleController::class,'update']);
-Route::match(['get','post',], 'schedule/delete', [ScheduleController::class,'delete']);
+Route::controller(ScheduleController::class)->group(function () {
+    Route::match(['get','post',], 'schedule/list', 'list');
+    Route::match(['get','post',], 'schedule/items', 'items');
+    Route::match(['get','post',], 'schedule/create', 'create');
+    Route::match(['get','post',], 'schedule/update', 'update');
+    Route::match(['get','post',], 'schedule/delete', 'delete');
+});
+
+
 //Status
-Route::match(['get','post',], 'status/list', [StatusController::class,'list']);
-Route::match(['get','post',], 'status/items', [StatusController::class,'items']);
-Route::match(['get','post',], 'status/create', [StatusController::class,'create']);
-Route::match(['get','post',], 'status/update', [StatusController::class,'update']);
-Route::match(['get','post',], 'status/delete', [StatusController::class,'delete']);
+Route::controller(StatusController::class)->group(function () {
+    Route::match(['get','post',], 'status/list', 'list');
+    Route::match(['get','post',], 'status/items', 'items');
+    Route::match(['get','post',], 'status/create', 'create');
+    Route::match(['get','post',], 'status/update', 'update');
+    Route::match(['get','post',], 'status/delete', 'delete');
+});
+
 
 //Transaction
-Route::match(['get','post',], 'transaction/list', [TransactionController::class,'list']);
-Route::match(['get','post',], 'transaction/items', [TransactionController::class,'items']);
-Route::match(['get','post',], 'transaction/create', [TransactionController::class,'create']);
-Route::match(['get','post',], 'transaction/update', [TransactionController::class,'update']);
-Route::match(['get','post',], 'transaction/delete', [TransactionController::class,'delete']);
+Route::controller(TransactionController::class)->group(function () {
+    Route::match(['get','post',], 'transaction/list', 'list');
+    Route::match(['get','post',], 'transaction/items', 'items');
+    Route::match(['get','post',], 'transaction/create', 'create');
+    Route::match(['get','post',], 'transaction/update', 'update');
+    Route::match(['get','post',], 'transaction/delete', 'delete');
+});
+
 
 //Trip
-Route::match(['get','post',], 'trip/list', [TripController::class,'list']);
-Route::match(['get','post',], 'trip/items', [TripController::class,'items']);
-Route::match(['get','post',], 'trip/create', [TripController::class,'create']);
-Route::match(['get','post',], 'trip/update', [TripController::class,'update']);
-Route::match(['get','post',], 'trip/delete', [TripController::class,'delete']);
+Route::controller(TripController::class)->group(function () {
+    Route::match(['get','post',], 'trip/list', 'list');
+    Route::match(['get','post',], 'trip/items', 'items');
+    Route::match(['get','post',], 'trip/create', 'create');
+    Route::match(['get','post',], 'trip/update', 'update');
+    Route::match(['get','post',], 'trip/delete', 'delete');
+});
 
 //User
-Route::match(['get','post',], 'user/list', [UserController::class,'list']);
-Route::match(['get','post',], 'user/items', [UserController::class,'items']);
-Route::match(['get','post',], 'user/create', [UserController::class,'create']);
-Route::match(['get','post',], 'user/update', [UserController::class,'update']);
-Route::match(['get','post',], 'user/delete', [UserController::class,'delete']);
+Route::controller(UserController::class)->group(function () {
+    Route::match(['get','post',], 'user/list', 'list');
+    Route::match(['get','post',], 'user/items', 'items');
+    Route::match(['get','post',], 'user/create', 'create');
+    Route::match(['get','post',], 'user/update', 'update');
+    Route::match(['get','post',], 'user/delete', 'delete');
+});
+
 
 //ScheduleTransaction
-Route::match(['get','post',], 'schedule_transaction/list', [ScheduleTransactionController::class,'list']);
-Route::match(['get','post',], 'schedule_transaction/items', [ScheduleTransactionController::class,'items']);
-Route::match(['get','post',], 'schedule_transaction/create', [ScheduleTransactionController::class,'create']);
-Route::match(['get','post',], 'schedule_transaction/update', [ScheduleTransactionController::class,'update']);
-Route::match(['get','post',], 'schedule_transaction/delete', [ScheduleTransactionController::class,'delete']);
+Route::controller(ScheduleTransactionController::class)->group(function () {
+    Route::match(['get','post',], 'schedule_transaction/list', 'list');
+    Route::match(['get','post',], 'schedule_transaction/items', 'items');
+    Route::match(['get','post',], 'schedule_transaction/create', 'create');
+    Route::match(['get','post',], 'schedule_transaction/update', 'update');
+    Route::match(['get','post',], 'schedule_transaction/delete', 'delete');
+});
 
 //StatusTrip
-Route::match(['get','post',], 'status_trip/list', [StatusTripController::class,'list']);
-Route::match(['get','post',], 'status_trip/items', [StatusTripController::class,'items']);
-Route::match(['get','post',], 'status_trip/create', [StatusTripController::class,'create']);
-Route::match(['get','post',], 'status_trip/update', [StatusTripController::class,'update']);
-Route::match(['get','post',], 'status_trip/delete', [StatusTripController::class,'delete']);
+Route::controller(StatusTripController::class)->group(function () {
+    Route::match(['get','post',], 'status_trip/list','list');
+    Route::match(['get','post',], 'status_trip/items','items');
+    Route::match(['get','post',], 'status_trip/create','create');
+    Route::match(['get','post',], 'status_trip/update','update');
+    Route::match(['get','post',], 'status_trip/delete','delete');
+});
+
