@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a id=menu-bus class="collapse-item" href="./bus">Manage Bus</a>
-                <a class="collapse-item" href="./location">Locations</a>
+                <a class="collapse-item" href="./location">Manage Locations</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu:</h6>
                 <a class="collapse-item" href="./schedule">Schedule List</a>
-                <a class="collapse-item" href="#">Transactions</a>
+                <a class="collapse-item" href="#">Show Transactions</a>
             </div>
         </div>
     </li>
