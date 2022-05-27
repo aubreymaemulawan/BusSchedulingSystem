@@ -10,10 +10,9 @@ class Operator extends Migration
     {
         Schema::create('operator',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('company_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('license_no');
+            $table->integer('company_id')->unsigned();
+            $table->string('name')->unique();
+            $table->string('license_no')->unique();
             $table->bigInteger('contact_no');
             $table->integer('age');
             $table->string('address');
@@ -21,6 +20,13 @@ class Operator extends Migration
             $table->string('profile_path')->nullable();
             $table->integer('is_active');
             $table->timestamps();
+
+            $table->foreign('company_id')
+            ->references('id')
+            ->on('company')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
 

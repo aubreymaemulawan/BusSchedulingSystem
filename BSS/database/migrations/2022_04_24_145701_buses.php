@@ -11,7 +11,7 @@ class Buses extends Migration
         Schema::create('bus',function(Blueprint $table){
             $table->increments('id');
             $table->integer('bus_no')->unique();
-            $table->integer('company_id');
+            $table->integer('company_id')->unsigned();
             $table->integer('bustype_id');
             $table->string('plate_no')->unique();
             $table->string('chassis_no')->unique();
@@ -19,6 +19,12 @@ class Buses extends Migration
             $table->integer('is_active');
             $table->timestamps();
 
+            $table->foreign('company_id')
+            ->references('id')
+            ->on('company')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
         

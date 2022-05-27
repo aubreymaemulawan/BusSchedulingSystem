@@ -10,11 +10,25 @@ class Transaction extends Migration
     {
         Schema::create('transaction',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('fare_id');
-            $table->integer('discount_id');
+            $table->integer('fare_id')->unsigned();
+            $table->integer('discount_id')->unsigned();
             $table->integer('no_passenger');
             $table->float('amount');
             $table->timestamps();
+
+            $table->foreign('fare_id')
+            ->references('id')
+            ->on('fare')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
+
+            $table->foreign('discount_id')
+            ->references('id')
+            ->on('discount')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
 

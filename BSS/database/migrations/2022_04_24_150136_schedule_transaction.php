@@ -10,11 +10,25 @@ class ScheduleTransaction extends Migration
     {
         Schema::create('schedule_transaction',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('schedule_id');
-            $table->integer('transaction_id');
+            $table->integer('schedule_id')->unsigned();
+            $table->integer('transaction_id')->unsigned();
             $table->integer('total_passengers');
             $table->float('total_amount');
             $table->timestamps();
+
+            $table->foreign('schedule_id')
+            ->references('id')
+            ->on('schedule')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
+
+            $table->foreign('transaction_id')
+            ->references('id')
+            ->on('transaction')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
 

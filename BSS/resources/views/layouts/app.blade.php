@@ -18,16 +18,16 @@
         </title>
 
         <!-- Fonts -->
-        <link href="{{asset('pub/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
         <!-- CSS Styles -->
-        <link href="{{asset('pub/css/styles.css')}}" rel="stylesheet">
+        <link href="{{asset('css/styles.css')}}" rel="stylesheet">
 
         <!-- CSS Data Table Styles -->
-        <link rel="stylesheet" type="text/css" href="{{asset('pub/css/datatables.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/datatables.css')}}">
     </head>
 
     <body class="bg-gradient-primary">
@@ -59,10 +59,6 @@
                             <!-- End of Content Wrapper -->
                         </div>
                         <!-- End of Page Wrapper -->
-                        <!-- Scroll to Top Button-->
-                        <a class="scroll-to-top rounded" href="#page-top">
-                            <i class="fas fa-angle-up"></i>
-                        </a>
                     @elseif( Auth::user()->userType == 'dispatch')
                         @yield('modal')
                         <!-- Page Wrapper -->
@@ -73,7 +69,7 @@
                                 <!-- Main Content -->
                                 <div id="content">
                                     @include('dispatch.navbar')
-                                    @yield('content')
+                                    @yield('dispatch_content')
                                 </div>
                                 <!-- End of Main Content -->  
                                 @include('dispatch.footer')
@@ -81,10 +77,6 @@
                             <!-- End of Content Wrapper -->
                         </div>
                         <!-- End of Page Wrapper -->
-                        <!-- Scroll to Top Button-->
-                        <a class="scroll-to-top rounded" href="#page-top">
-                            <i class="fas fa-angle-up"></i>
-                        </a>
                     @endif
             @endguest
 
@@ -92,27 +84,27 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('pub/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('pub/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('pub/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('pub/js/script.min.js')}}"></script>
+    <script src="{{asset('js/script.min.js')}}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('pub/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('pub/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('pub/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
 
     <!-- Data Table scripts -->
-    <script type="text/javascript" charset="utf8" src="{{asset('pub/js/datatables.js')}}"></script>    
+    <script type="text/javascript" charset="utf8" src="{{asset('js/datatables.js')}}"></script>    
 
     <!-- Bootbox scripts -->
-    <script src="{{ asset('pub/vendor/bootbox/assets/js/bootbox.min.js')}}"></script>
+    <script src="{{ asset('vendor/bootbox/assets/js/bootbox.min.js')}}"></script>
 
     <!-- POST & GET Request scripts -->
     <script src="{{ asset('js/core.js') }}"></script>

@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 use App\Models\Operator;
  
 class OperatorController extends Controller
-{
+{ 
     public function list(Request $request){
         return json_encode(Operator::with(['company'])->get());
     }
@@ -16,24 +16,21 @@ class OperatorController extends Controller
     public function create(Request $request){
         $request->validate([
             'company_id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required|unique:operator',
             'license_no' => 'required|unique:operator',
             'contact_no' => 'required',
             'age' => 'required',
             'address' => 'required',
-            'is_active' => 'required' ,
             'profile_picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048' ,
-        ],);
+        ]);
         $data = new Operator();
         $data->company_id = $request->company_id;
-        $data->first_name = $request->first_name;
-        $data->last_name = $request->last_name;
+        $data->name = $request->name;
         $data->license_no = $request->license_no;
         $data->contact_no = $request->contact_no;
         $data->age = $request->age;
         $data->address = $request->address;
-        $data->is_active = $request->is_active;
+        $data->is_active = 1;
         if($request->hasFile('profile_picture')){
             $profile_name = $request->file('profile_picture')->getClientOriginalName();
             $profile_path = $request->file('profile_picture')->store('public/Profile_Images');
@@ -48,10 +45,9 @@ class OperatorController extends Controller
     public function update(Request $request){
         $request->validate([
             'edit-company_id' => 'required',
-            'edit-first_name' => 'required',
-            'edit-last_name' => 'required',
+            'edit-name' => 'required',
             'edit-contact_no' => 'required',
-            'edit-license_no' => 'required|unique:operator',
+            'edit-license_no' => 'required',
             'edit-age' => 'required',
             'edit-address' => 'required',
             'edit-is_active' => 'required' ,
@@ -59,8 +55,7 @@ class OperatorController extends Controller
         ]);
         $data = Operator::find($request->input("edit-id"));
         $data->company_id = $request->input("edit-company_id");
-        $data->first_name = $request->input("edit-first_name");
-        $data->last_name = $request->input("edit-last_name");
+        $data->name = $request->input("edit-name");
         $data->contact_no = $request->input("edit-contact_no");
         $data->license_no = $request->input("edit-license_no");
         $data->age = $request->input("edit-age");

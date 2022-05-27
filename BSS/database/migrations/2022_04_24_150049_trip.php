@@ -10,9 +10,16 @@ class Trip extends Migration
     {
         Schema::create('trip',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('schedule_id');
+            $table->integer('schedule_id')->unsigned();
             $table->integer('trip_no');
             $table->timestamps();
+
+            $table->foreign('schedule_id')
+            ->references('id')
+            ->on('schedule')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
 

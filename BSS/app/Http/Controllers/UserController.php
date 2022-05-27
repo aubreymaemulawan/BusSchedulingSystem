@@ -15,12 +15,14 @@ class UserController extends Controller
     public function create(Request $request){
         $request->validate([
             'name' => 'required|unique:users',
+            'dispatcher_id' => 'required|unique:users',
             'email' => 'required|unique:users',
             'password' => 'required',
             'userType' => 'required',
         ]);
         $data = new User();
         $data->name = $request->name;
+        $data->dispatcher_id = $request->dispatcher_id;
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->userType = $request->userType;
@@ -31,13 +33,15 @@ class UserController extends Controller
     } 
     public function update(Request $request){
         $request->validate([
-            'name' => 'required|unique:users',
-            'email' => 'required|unique:users',
+            'name' => 'required',
+            'dispatcher_id' => 'required',
+            'email' => 'required',
             'password' => 'required',
             'userType' => 'required',
         ]);
-        $data = User::find($request->id);
+        $data = User::find($request->dispatcher_id);
         $data->name = $request->name;
+        $data->dispatcher_id = $request->dispatcher_id;
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->userType = $request->userType;

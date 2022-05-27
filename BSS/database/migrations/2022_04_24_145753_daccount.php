@@ -10,10 +10,17 @@ class Daccount extends Migration
     {
         Schema::create('daccount',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('dispatcher_id')->unique();
+            $table->integer('dispatcher_id')->unsigned()->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
+
+            $table->foreign('dispatcher_id')
+            ->references('id')
+            ->on('dispatcher')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

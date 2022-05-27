@@ -10,9 +10,16 @@ class Status extends Migration
     {
         Schema::create('status',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('busstatus_id');
+            $table->integer('busstatus_id')->unsigned();
             $table->string('current_location');
             $table->timestamps();
+
+            $table->foreign('busstatus_id')
+            ->references('id')
+            ->on('busstatus')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
 

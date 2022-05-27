@@ -10,7 +10,7 @@ class Location extends Migration
     {
         Schema::create('location',function(Blueprint $table){
             $table->increments('id');
-            $table->string('place');
+            $table->string('place')->unique();
             $table->timestamps();
         });
     }

@@ -30,8 +30,8 @@ class DaccountController extends Controller
     } 
     public function update(Request $request){
         $request->validate([
-            'dispatcher_id' => 'required|unique:daccount',
-            'email' => 'required|unique:daccount|unique:users',
+            'dispatcher_id' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
         $data = Daccount::find($request->id);
@@ -43,7 +43,6 @@ class DaccountController extends Controller
             ['success'=>true]
         );
     }
-
     public function getDispatcher(Request $request){
         $dispatcher = \DB::table('dispatcher')->where('company_id', $request->company_id)->get();
         if (count($dispatcher) > 0) {

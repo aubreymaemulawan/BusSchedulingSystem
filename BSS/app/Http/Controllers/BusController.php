@@ -39,10 +39,10 @@ class BusController extends Controller
         $request->validate([
             'company_id' => 'required',
             'bustype_id' => 'required',
-            'bus_no' => 'required|unique:bus',
-            'plate_no' => 'required|unique:bus' ,
-            'chassis_no' => 'required|unique:bus' ,
-            'engine_no' => 'required|unique:bus' ,
+            'bus_no' => 'required',
+            'plate_no' => 'required' ,
+            'chassis_no' => 'required' ,
+            'engine_no' => 'required' ,
             'is_active' => 'required',
         ]);
         $data = Bus::find($request->id);

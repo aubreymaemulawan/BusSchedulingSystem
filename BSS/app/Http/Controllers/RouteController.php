@@ -26,7 +26,7 @@ class RouteController extends Controller
     }
     public function update(Request $request){
         $request->validate([ 
-            'from_to_location' => 'required|unique:route',
+            'from_to_location' => 'required',
         ],);
         $data = Route::find($request->id);
         $data->from_to_location = $request->from_to_location;

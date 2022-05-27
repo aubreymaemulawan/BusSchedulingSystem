@@ -122,6 +122,8 @@ Route::match(['get','post',], 'schedule/items', [ScheduleController::class,'item
 Route::match(['get','post',], 'schedule/create', [ScheduleController::class,'create']);
 Route::match(['get','post',], 'schedule/update', [ScheduleController::class,'update']);
 Route::match(['get','post',], 'schedule/delete', [ScheduleController::class,'delete']);
+Route::match(['get','post',], 'schedule/s', [ScheduleController::class,'s']);
+
 //Status
 Route::match(['get','post',], 'status/list', [StatusController::class,'list']);
 Route::match(['get','post',], 'status/items', [StatusController::class,'items']);

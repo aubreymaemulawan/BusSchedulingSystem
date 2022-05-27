@@ -19,22 +19,19 @@ class DispatcherController extends Controller
     public function create(Request $request){
         $request->validate([
             'company_id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'name' => 'required|unique:dispatcher',
             'contact_no' => 'required',
             'age' => 'required',
             'address' => 'required',
-            'is_active' => 'required' ,
             'profile_picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048' ,
-        ],);
+        ]);
         $data = new Dispatcher();
         $data->company_id = $request->company_id;
-        $data->first_name = $request->first_name;
-        $data->last_name = $request->last_name;
+        $data->name = $request->name;
         $data->contact_no = $request->contact_no;
         $data->age = $request->age;
         $data->address = $request->address;
-        $data->is_active = $request->is_active;
+        $data->is_active = 1;
         if($request->hasFile('profile_picture')){
             $profile_name = $request->file('profile_picture')->getClientOriginalName();
             $profile_path = $request->file('profile_picture')->store('public/Profile_Images');
@@ -49,22 +46,37 @@ class DispatcherController extends Controller
     public function update(Request $request){
         $request->validate([
             'edit-company_id' => 'required',
-            'edit-first_name' => 'required',
-            'edit-last_name' => 'required',
+            'edit-name' => 'required',
             'edit-contact_no' => 'required',
             'edit-age' => 'required',
             'edit-address' => 'required',
             'edit-is_active' => 'required' ,
             'edit-profile_picture' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048' ,
-        ],);
+        ]);
         $data = Dispatcher::find($request->input("edit-id"));
         $data->company_id = $request->input("edit-company_id");
-        $data->first_name = $request->input("edit-first_name");
-        $data->last_name = $request->input("edit-last_name");
+        $data->name = $request->input("edit-name");
         $data->contact_no = $request->input("edit-contact_no");
         $data->age = $request->input("edit-age");
         $data->address = $request->input("edit-address");
         $data->is_active = $request->input("edit-is_active");
+        $data1 = Daccount::where('dispatcher_id',$request->input("edit-id"))->get();
+        $data2 = User::where('dispatcher_id',$request->input("edit-id"))->get();
+        $email = Daccount::where('dispatcher_id',$request->input("edit-id"))->value('email');
+        $password = Daccount::where('dispatcher_id',$request->input("edit-id"))->value('password');
+
+        if($request->input("edit-is_active") == 2){
+            $user_delete = User::where('dispatcher_id',$request->input("edit-id"));
+            $user_delete->delete();
+        }else if($request->input("edit-is_active") == 1 && count($data1) != 0 && count($data2) == 0){
+            $data2 = new User();
+            $data2->name = $request->input("edit-name");
+            $data2->dispatcher_id = $request->input("edit-id");
+            $data2->email = $email;
+            $data2->password = bcrypt($password);
+            $data2->userType = "dispatch";
+            $data2->save();
+        }
         if($request->hasFile('edit-profile_picture')){
             $profile_name = $request->file('edit-profile_picture')->getClientOriginalName();
             $profile_path = $request->file('edit-profile_picture')->store('public/Profile_Images');
@@ -78,11 +90,10 @@ class DispatcherController extends Controller
     }
     public function delete(Request $request){
         $data = Dispatcher::find($request->id);
-        $data1 = Daccount::where('dispatcher_id',$request->id);
         $data->delete();
-        $data1->delete();
-        return response()->json($data1);
-        
+        return json_encode(
+            ['success'=>true]
+        );
     }
     public function dispatcherGenerate(Request $request){
         $from = date($request->from);

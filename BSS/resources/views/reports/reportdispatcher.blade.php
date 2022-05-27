@@ -142,7 +142,7 @@
                                         $('#tble').append('<tbody>');
                                         $('#tble').append('<tr>'); 
                                         $('#tble').append('<td>'+result.company_name+'</td>');
-                                        $('#tble').append('<td>'+value.last_name+', '+value.first_name+'</td>'); 
+                                        $('#tble').append('<td>'+value.name+'</td>'); 
                                         $('#tble').append('<td>'+value.contact_no+'</td>'); 
                                         $('#tble').append('<td>'+value.age+'</td>'); 
                                         $('#tble').append('<td>'+value.address+'</td>'); 

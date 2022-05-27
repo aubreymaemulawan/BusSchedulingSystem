@@ -94,7 +94,7 @@
                                         <input 
                                             id="email" 
                                             type="email" 
-                                            class="form-control @error('email') is-invalid @enderror"
+                                            class="form-control form-control-user @error('email') is-invalid @enderror"
                                             name="email" 
                                             value="{{ old('email') }}" 
                                             required autocomplete="email" 
@@ -111,7 +111,7 @@
                                         <input 
                                             id="password" 
                                             type="password" 
-                                            class="form-control @error('password') is-invalid @enderror"
+                                            class="form-control form-control-user @error('password') is-invalid @enderror"
                                             name="password" 
                                             placeholder="Password"
                                             required autocomplete="current-password">

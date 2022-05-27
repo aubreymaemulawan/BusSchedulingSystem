@@ -156,8 +156,8 @@
                                             $('#tble').append('<td>'+result2.bus_no+' - Non-Airconditioned</td>');
                                         }
                                         $('#tble').append('<td>'+result3.orig_location+' - '+result3.dest_location+'</td>'); 
-                                        $('#tble').append('<td>'+result4.last_name+', '+result4.first_name+'</td>'); 
-                                        $('#tble').append('<td>'+result5.last_name+', '+result5.first_name+'</td>'); 
+                                        $('#tble').append('<td>'+result4.name+'</td>'); 
+                                        $('#tble').append('<td>'+result5.name+'</td>'); 
                                         $('#tble').append('<td> <strong>First Trip: </strong>'+value.first_trip+' <strong>Last Trip: </strong>'+value.last_trip+' <strong>Max: </strong>'+value.max_trips+'</td>'); 
                                         $('#tble').append('<td>'+value.interval_mins+' mins</td>');
                                         if(value.is_active == 1){

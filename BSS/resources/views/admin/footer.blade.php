@@ -1,9 +1,9 @@
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Bus Scheduling System 2022</span>
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Bus Tracking & Scheduling System 2022</span>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 <!-- End of Footer -->

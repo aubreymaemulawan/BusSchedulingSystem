@@ -10,11 +10,25 @@ class StatusTrip extends Migration
     {
         Schema::create('status_trip',function(Blueprint $table){
             $table->increments('id');
-            $table->integer('status_id');
-            $table->integer('trip_id');
+            $table->integer('status_id')->unsigned();
+            $table->integer('trip_id')->unsigned();
             $table->integer('trip_duration');
             $table->integer('is_active');
             $table->timestamps();
+
+            $table->foreign('status_id')
+            ->references('id')
+            ->on('status')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
+
+            $table->foreign('trip_id')
+            ->references('id')
+            ->on('trip')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('restrict');
         });
     }
 

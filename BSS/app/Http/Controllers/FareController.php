@@ -19,6 +19,12 @@ class FareController extends Controller
             'bustype_id' => 'required',
             'price' => 'required',
         ]);
+        $route_id = Fare::where('bustype_id',$request->bustype_id)->get();
+        foreach($route_id as $rd){
+            if($rd->route_id == $request->route_id){
+                return response()->json(1);
+            }
+        }
         $data = new Fare();
         $data->route_id = $request->route_id;
         $data->bustype_id = $request->bustype_id;
@@ -34,6 +40,14 @@ class FareController extends Controller
             'bustype_id' => 'required',
             'price' => 'required',
         ]);
+        $route_id = Fare::where('bustype_id',$request->bustype_id)->get();
+        foreach($route_id as $rd){
+            if($rd->route_id == $request->route_id){
+                if($rd->id != $request->id){
+                    return response()->json(1);
+                }
+            }
+        }
         $data = Fare::find($request->id);
         $data->route_id = $request->route_id;
         $data->bustype_id = $request->bustype_id;

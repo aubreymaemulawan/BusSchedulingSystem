@@ -27,6 +27,24 @@ class ScheduleController extends Controller
             'max_trips' => 'required' ,
             'is_active' => 'required',
         ]);
+        $bus_id = Schedule::where('date',$request->date)->get();
+        $dispatcher_id = Schedule::where('date',$request->date)->get();
+        $operator_id = Schedule::where('date',$request->date)->get();
+        foreach($bus_id as $bs){
+            if($bs->bus_id == $request->bus_id){
+                return response()->json(1);
+            }
+        }
+        foreach($operator_id as $op){
+            if($op->operator_id == $request->operator_id){
+                return response()->json(2);
+            }
+        }
+        foreach($dispatcher_id as $dp){
+            if($dp->dispatcher_id == $request->dispatcher_id){
+                return response()->json(3);
+            }
+        }
         $data = new Schedule();
         $data->date = $request->date;
         $data->company_id = $request->company_id;
@@ -40,6 +58,13 @@ class ScheduleController extends Controller
         $data->max_trips = $request->max_trips;
         $data->is_active = $request->is_active;
         $data->save();
+
+        
+
+        // $data1 = new Trip();
+        // foreach()
+        // $data1->schedule_id = $data->id;
+        // $data1->trip_no = $data->id;
         return json_encode(
             ['success'=>true]
         );
@@ -58,6 +83,30 @@ class ScheduleController extends Controller
             'max_trips' => 'required' ,
             'is_active' => 'required',
         ]);
+        $bus_id = Schedule::where('date',$request->date)->get();
+        $dispatcher_id = Schedule::where('date',$request->date)->get();
+        $operator_id = Schedule::where('date',$request->date)->get();
+        foreach($bus_id as $bs){
+            if($bs->bus_id == $request->bus_id){
+                if($bs->id != $request->id){
+                    return response()->json(1);
+                }
+            }
+        }
+        foreach($operator_id as $op){
+            if($op->operator_id == $request->operator_id){
+                if($op->id != $request->id){
+                    return response()->json(2);
+                }            
+            }
+        }
+        foreach($dispatcher_id as $dp){
+            if($dp->dispatcher_id == $request->dispatcher_id){
+                if($dp->id != $request->id){
+                    return response()->json(3);
+                }            
+            }
+        }
         $data = Schedule::find($request->id);
         $data->date = $request->date;
         $data->company_id = $request->company_id;
@@ -130,6 +179,11 @@ class ScheduleController extends Controller
             return response()->json(0);
         }
     } 
+    public function s(Request $request){
+        $s = \DB::table('schedule')->get();
+        $cnt = count($s);
+        return json_encode($cnt);
+    }
 
 }
  
