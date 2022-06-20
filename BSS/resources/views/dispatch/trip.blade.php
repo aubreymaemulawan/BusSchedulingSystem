@@ -12,94 +12,63 @@
                     </button>
                 </div>
             <div class="modal-body">
-                <input type="hidden" class="form-control" id="id">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="date">Date</label>
-                            <input name="date" type="date" class="form-control" id="date">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="company_id">Company</label>
-                            <select name="company_id" class="form-control" data-style="btn btn-link" id="company_id">
+                            <label for="status">Status</label>
+                            <select name="status" class="form-control" data-style="btn btn-link" id="status">
                                 @foreach ($busstatus as $bs)
                                     <option value="{{$bs->id}}">{{ $bs->bus_status }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="bus_id">Bus Number</label>
-                            <select name="bus_id" class="form-control" data-style="btn btn-link" id="bus_id">
-                            </select>
-                        </div>
-                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="operator_id">Operator</label>
-                            <select name="operator_id" class="form-control" data-style="btn btn-link" id="operator_id">
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="dispatcher_id">Dispatcher</label>
-                            <select name="dispatcher_id" class="form-control" data-style="btn btn-link" id="dispatcher_id">
+                
+            </div>
+                <div class="modal-footer">
+                    <button id="close" onclick="Close()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="edit" onclick="Save()" type="button" class="btn btn-primary" style="background-color:#4e73df"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            </select>
-                        </div>
-                    </div>
+    <div class="modal fade" id="trans-modal" tabindex="-1" role="dialog" aria-labelledby="trans-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#4e73df">
+                    <h5 id="header-modal1" class="modal-title" id="trans-modalLabel" style="color:white;"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="route_id">Route</label>
-                            <select name="route_id" class="form-control" data-style="btn btn-link" id="route_id">
-
+                            <label for="price">Price</label>
+                            <select name="price" class="form-control" data-style="btn btn-link" id="price">
+                                <option selected="true" value="123">₱ 123.00</option>
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
-                            <label for="first_trip">First Trip</label>
-                            <input name="first_trip" type="time" class="form-control" id="first_trip">
+                            <label for="passengers">No. of Passengers</label>
+                            <input name="passengers" type="number" class="form-control" id="passengers">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="last_trip">Last Trip</label>
-                            <input name="last_trip" type="time" class="form-control" id="last_trip">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="interval_mins">Interval Minutes</label>
-                            <input name="interval_mins" type="number" class="form-control" id="interval_mins">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="max_trips">Maximum No. of Trips</label>
-                            <input name="max_trips" type="number" class="form-control" id="max_trips">
+                    <div class="col-md-12">
+                        <div id="total" class="form-group">
+                            
                         </div>
                     </div>
                 </div>
             </div>
                 <div class="modal-footer">
-                    <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="edit" onclick="Save()" type="button" class="btn btn-primary" style="background-color:#4e73df"></button>
+                    <button id="close" onclick="Calculate1()" type="button" class="btn btn-secondary" style="background-color:#1cc88a">Calculate</button>
+                    <button id="edit1" onclick="Save1()" type="button" class="btn btn-primary" style="background-color:#4e73df"></button>
                 </div>
             </div>
         </div>
@@ -110,7 +79,7 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Trip Number</h1>
+        <h1 class="h3 mb-2 text-gray-800">Trip Number : 1</h1>
         <h3 class="h5 mb-2 text-gray-800">Agora - Laguindingan</h3>
         <!-- DataTables Example -->
         <div class="card shadow mb-4">
@@ -118,17 +87,18 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group genrep">
-                            <button id="busstatus" type="button" class="form-control btn btn-sm btn btn-primary">Set Trip Status</button>
+                            <button onclick="dropdown()" id="busstatus" type="button" class="form-control btn btn-sm btn btn-primary">Set Trip Status</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group genrep">
-                            <button id="generate" type="button" class="form-control btn btn-sm btn btn-primary">Add Trip Transaction</button>
+                            <button onclick="transact()" id="generate" type="button" class="form-control btn btn-sm btn btn-primary">Add Trip Transaction</button>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group genrep">
-                            <button id="generate" type="button" class="form-control btn btn-sm btn btn-success">Trip Finished</button>
+                        <a href="./dispatch-transaction"><button onclick="mod()" id="generate" type="button" class="form-control btn btn-sm btn btn-success">Trip Finished</button></a>
+
                         </div>
                     </div>
                     <div class="col-md-12" id="gen-button">
@@ -139,9 +109,20 @@
             </div>
             <div class="card-body" id="output">
                 <div id="crd">
+                    <div class="card-header py-3">
+                        <h5 id="name_head" class="h6 mb-2 text-gray-800">Trip Status Logs</h5>
+                    </div>
                 </div>
                 <div class="table-responsive">
-                    <table id="tble" class="table" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Trip No.</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Location</th>
+                            </tr>
+                        </thead>
                     </table>
                 </div>
             </div>
@@ -150,113 +131,65 @@
 @endsection
  
 @section('scripts')
-    <!-- <script>
-        $('[id^="menu-"]').removeClass('active')
-        $('#menu-reportBus').addClass('active')
-        $('[id^="main"]').removeClass('active')
-        $('#main-report').addClass('active')
-        $('#collapseReport').addClass('show')
-
-        $('#report_from').val('')
-        $('#report_to').val('')
-        $('#company_id').val('')
-        $('#is_active').val('')
-
-        $(document).ready( 
-            function () {  
-                $('#generate').on('click', function () {
-                    $('#tble').html('');
-                    $('#crd').html('');
-                    $('#gen-button').html('');
-                        var createdFrom = $('#created_from').val()+'-00 00:00:00';
-                        var createdTo = $('#created_to').val()+'-31 23:59:59';
-                        var isActive = $('#is_active').val();
-                        var companyId = $('#company_id').val();
-                        $.ajax({
-                            url: '{{ route('busGenerate') }}?active='+isActive+'&company='+companyId+'&from='+createdFrom+'&to='+createdTo,
-                            type: 'get',
-                            success: function (res) {
-                                if(res === 0){
-                                    bootbox.alert({
-                                        message: "No Data Found!",
-                                        centerVertical: true,
-                                        size: 'medium'
-                                    }); 
-                                }else{
-                                    // PDF & EXCEL Button
-                                    $('#gen-button').append('<a onclick="generatePDF()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> PDF</a>');
-                                    $('#gen-button').append('<a> </a>');
-                                    $('#gen-button').append('<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> EXCEL</a>');
-                                    // Title & About
-                                    $('#crd').append('<br class="mb-4">');
-                                    $('#crd').append('<img src="{{ asset('pub/img/logo.svg') }}" width="40" height="40" class="center shadow-4 mb-3">');
-                                    $('#crd').append('<h1 style="text-align:center" class="h3 mb-2 text-gray-800"> <strong>ADMIN BUS REPORT</strong> </h1>');
-                                    $('#crd').append('<p style="text-align:center" class="mb-3">Date : <strong>'+Date()+'</strong></p>');
-                                    $('#crd').append('<br class="mb-4">');
-                                    $('#crd').append('<hr class="mb-4">');
-                                    $('#crd').append('<p class="mb-2">Date of Report : <strong style="color: #4e73df"> '+$('#created_from').val()+'-00 - '+$('#created_to').val()+'-31'+'</strong></p>');
-                                    $('#crd').append('<p class="mb-2">Total Buses : <strong style="color: #4e73df">'+res.length+'</strong></p>');
-                                    if(isActive == 1){ $('#crd').append('<p class="mb-2">Bus Status : <strong style="color: #4e73df">Active Buses</strong></p>'); }
-                                    else if(isActive == 2){ $('#crd').append('<p class="mb-2">Bus Status : <strong style="color: #4e73df">Inactive Buses</strong></p>'); }
-                                    else{ $('#crd').append('<p class="mb-2">Bus Status : <strong style="color: #4e73df">Active & Inactive Buses</strong></p>'); }
-                                    if(companyId == 0){
-                                        $('#crd').append('<p class="mb-4">Company : <strong style="color: #4e73df">All Companies</strong></p>');
-                                    }else{
-                                        Controller.Post('/api/company/items', { 'id': companyId }).done(function(result) {
-                                            $('#crd').append('<p class="mb-4">Company : <strong style="color: #4e73df">'+result.company_name+'</strong></p>');
-                                        });
-                                    }
-                                    // Table Head
-                                    $('#tble').append('<thead>'); 
-                                    $('#tble').append('<tr>'); 
-                                    $('#tble').append('<th>Company</th>');
-                                    $('#tble').append('<th>Bus No.</th>');
-                                    $('#tble').append('<th>Bus Type</th>');
-                                    $('#tble').append('<th>Plate No.</th>');
-                                    $('#tble').append('<th>Chassis No.</th>');
-                                    $('#tble').append('<th>Engine No.</th>');
-                                    $('#tble').append('<th>Status</th>');
-                                    $('#tble').append('<th>Created</th>');
-                                    $('#tble').append('<th>Updated</th>');
-                                    $('#tble').append('</tr>');
-                                    $('#tble').append('</thead>');
-                                    $.each(res, function (key, value) {
-                                        // Table Values
-                                        Controller.Post('/api/company/items', { 'id': value.company_id }).done(function(result) {                                        
-                                        $('#tble').append('<tbody>');
-                                        $('#tble').append('<tr>'); 
-                                        $('#tble').append('<td>'+result.company_name+'</td>');
-                                        $('#tble').append('<td>'+value.bus_no+'</td>'); 
-                                        if(value.bustype_id == 1){
-                                            $('#tble').append('<td>AC</td>');
-                                        }else if(value.bustype_id == 2){
-                                            $('#tble').append('<td>NAC</td>');
-                                        }
-                                        $('#tble').append('<td>'+value.plate_no+'</td>'); 
-                                        $('#tble').append('<td>'+value.chassis_no+'</td>'); 
-                                        $('#tble').append('<td>'+value.engine_no+'</td>'); 
-                                        if(value.is_active == 1){
-                                            $('#tble').append('<td style="color:#1cc88a"><strong>Active</strong></td>');
-                                        }else if(value.is_active == 2){
-                                            $('#tble').append('<td style="color:#e74a3b"><strong>Inactive</strong></td>');
-                                        }
-                                        $('#tble').append('<td>'+value.created_at+'</td>'); 
-                                        $('#tble').append('<td>'+value.updated_at+'</td>'); 
-                                        $('#tble').append('</tr>');
-                                        $('#tble').append('</tbody>'); 
-                                    });
-                                    });
-                                    
-                                }
-                            }
-                        });                                   
-                });
+    <script>
+    var modal = '#main-modal';  
+    var trans = '#trans-modal';     
+    function dropdown(){
+        document.getElementById("header-modal").innerHTML="Bus Status"
+        document.getElementById("edit").innerHTML="Set"
+        $('#status').val('-1'),
+        $(modal).modal(
+            {'show':true}
+        )
+    }
+    function Save(){
+        $('#main-modal').modal('hide');
+        $('#dataTable').append('<tbody>');
+        $('#dataTable').append('<tr>'); 
+        $('#dataTable').append('<td>1</td>');
+        $('#dataTable').append('<td>2022-05-30 | 8:00:01</td>'); 
+        $('#dataTable').append('<td>Loading Passenger</td>'); 
+        $('#dataTable').append('<td>Cagayan de Oro City</td>'); 
+        $('#dataTable').append('</tr>');
+        $('#dataTable').append('</tbody>'); 
+    }
+    function mod(){
+        bootbox.alert({
+            message: "Trip No 1 has successfully ended!",
+            centerVertical: true,
+            size: 'medium',
+        }); 
+    }
+    function transact(){
+        $('#passengers').val('')
+        $('#total').html('');
+        document.getElementById("header-modal1").innerHTML="Bus Transaction"
+        document.getElementById("edit1").innerHTML="Save"
+        $(trans).modal(
+            {'show':true}
+        )
+    }
+    function Calculate1(){
+        $('#total').html('');
+        pr = $('#price').val()
+        pass = $('#passengers').val()
+        sum = parseInt(pr)*parseInt(pass)
+        $('#total').append('<label>Total: ₱ '+sum+'</label>');
+    }
+    function Save1(){
+        $(trans).modal('hide')
+        var dialog = bootbox.dialog({
+            centerVertical: true,
+            title: 'Saving Information',
+            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
         });
-        
-        function generatePDF(){
-            const output = document.getElementById('output');
-            html2pdf().from(output).save('bus-report.pdf');
-        }
-    </script> -->
+        dialog.init(function(){
+            setTimeout(function(){
+                dialog.find('.bootbox-body').html('Transaction Successfully saved!');
+                bootbox.hideAll();
+            }, 1000);
+        });
+    }
+    </script>
 @endsection
  

@@ -111,7 +111,8 @@ class PageController extends Controller
         $discount = Discount::all();
         $busstatus = Busstatus::all();
         $status = Status::all();
-        return view('dispatch.transaction',compact('transaction','fare','discount','busstatus','status'));
+        $dispatcher = Dispatcher::all();
+        return view('dispatch.transaction',compact('transaction','fare','discount','busstatus','status','dispatcher'));
     }
     public function dispatch_trip(){
         // Trip

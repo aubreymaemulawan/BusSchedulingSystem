@@ -104,13 +104,57 @@
               </div>
             </div>
           </div>
-          <a href="#updates" class="btn-find scrollto">Find</a>
+          <a href="#on" class="btn-find scrollto">Find</a>
         </div>
       </div>
     </div>
   </section>
 
   <main id="main">
+    <!-- Trips -->
+    <section id="on" class="updates">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Trips</h2>
+          <h3>Bus Terminal<span> Trips</span></h3>
+          <p>Monitor on-going trips to have a hassle-free trip.</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="box ">
+              <h3>On-going Trips<span id="date"></span></h3>
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Company</th>
+                        <th>Bus Info</th>
+                        <th>Trip</th>
+                        <th>Route</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>May 29, 2022</td>
+                      <td>RTMI</td>
+                      <td>Bus No: 121 <br> Bus Type: Airconditioned</td>
+                      <td>1</td>
+                      <td>Cagayan de Oro City - Butuan</td>
+                      <td><a target="_blank" rel="nofollow" href="#">Click here to track<br>bus location &rarr;</a></td>
+                      <td>Departed:<br> 8:00 am</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Updates -->
     <section id="updates" class="updates">
       <div class="container" data-aos="fade-up">
@@ -295,6 +339,13 @@
   <script src="{{ asset('vendor/waypoints/noframework.waypoints.js') }}"></script>
   <script src="{{ asset('vendor/php-email-form/validate.js') }}"></script>
   <script type="text/javascript" charset="utf8" src="{{asset('js/datatables.js')}}"></script> 
+  
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
